@@ -235,7 +235,7 @@ function VideoResult({
             {payload.hasVideo && payload.videoSrc ? (
               <VideoPlayer src={payload.videoSrc} ratio={payload.ratio} />
             ) : (
-              <PlaceholderVideo />
+              <PlaceholderVideo ratio={payload.ratio} />
             )}
             <div className="mt-3 flex items-center gap-2">
               <button className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-[var(--radius-pill)] bg-[var(--color-accent)] text-white py-2.5 text-[13px] font-semibold hover:bg-[var(--color-accent-hover)] transition-colors">

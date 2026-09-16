@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Large media: keep raw/heavy exports local only
+public/videos/*.mov
+.push-tmp/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

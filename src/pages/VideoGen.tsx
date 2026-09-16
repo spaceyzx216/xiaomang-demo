@@ -318,8 +318,12 @@ function VideoPlayer({ src, ratio }: { src: string; ratio: string }) {
   const ref = useRef<HTMLVideoElement>(null)
   const [playing, setPlaying] = useState(false)
   const [progress, setProgress] = useState(0)
-  // pick aspect class from ratio string; default 9:16 portrait
-  const aspectClass = ratio.startsWith("16:9") ? "aspect-video" : "aspect-[9/16]"
+  // Preserve the supplied phone-capture ratio; other portrait assets use 9:16.
+  const aspectClass = ratio.startsWith("16:9")
+    ? "aspect-video"
+    : ratio.startsWith("5:11")
+      ? "aspect-[5/11]"
+      : "aspect-[9/16]"
   const maxHeight = ratio.startsWith("16:9") ? "max-h-[420px]" : "max-h-[520px]"
 
   const toggle = () => {
@@ -381,7 +385,11 @@ function VideoPlayer({ src, ratio }: { src: string; ratio: string }) {
 }
 
 function PlaceholderVideo({ ratio }: { ratio: string }) {
-  const aspectClass = ratio.startsWith("16:9") ? "aspect-video" : "aspect-[9/16]"
+  const aspectClass = ratio.startsWith("16:9")
+    ? "aspect-video"
+    : ratio.startsWith("5:11")
+      ? "aspect-[5/11]"
+      : "aspect-[9/16]"
   return (
     <div className={`relative rounded-2xl overflow-hidden bg-gradient-to-br from-[#2a2a2e] to-[#1a1a1e] ${aspectClass} max-h-[520px] mx-auto grid place-items-center`}>
       <motion.div animate={{ opacity: [0.4, 1, 0.4] }} transition={{ duration: 1.6, repeat: Infinity }} className="text-center">
